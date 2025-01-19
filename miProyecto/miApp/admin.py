@@ -8,3 +8,12 @@ class CustomUserAdmin(admin.ModelAdmin):
     list_filter = ('rol',)
     search_fields = ('username','email')
 
+
+@admin.register(Evento)
+class EventoAdmin(admin.ModelAdmin):
+    list_display = ('titulo', 'date_time','organizador','capacidad')
+    list_filter = ('date_time','organizador')
+    search_fields = ('titulo', 'descripcion')
+
+
+
