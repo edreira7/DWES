@@ -15,5 +15,11 @@ class EventoAdmin(admin.ModelAdmin):
     list_filter = ('date_time','organizador')
     search_fields = ('titulo', 'descripcion')
 
+@admin.register(Reservas)
+class ReservasAdmin(admin.ModelAdmin):
+    list_display = ('user','evento','tickets_reservados','estado')
+    list_filter = ('estado')
+    search_fields = ('user__username','evento_titulo')
+
 
 
