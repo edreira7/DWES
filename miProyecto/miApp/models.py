@@ -3,8 +3,8 @@ from django.db import models
 
 class CustomUser(AbstractUser):
     ROLE_CHOICES = [
-        ('Organizador' , 'organizador'),
-        ('Participante' , 'participante'),
+        ('Organizador','organizador'),
+        ('Participante','participante'),
     ]
 role = models.CharField(max_length=20, choices=ROLE_CHOICES)
 bio = models.TextField(blank=True, null=True)
@@ -22,5 +22,23 @@ class Evento(models.Model):
 
 
 def __str__(self):
-    return self.title
+    return self.titulo
+
+
+class Reservas(models.Model):
+    STATUS_CHOICES = [
+        ('Pendiente','pendiente'),
+        ('Confirmado','confirmado'),
+        ('Cancelado','cancelado'),
+    ]
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE,related_name='reservas')
+    evento = models.ForeignKey(Evento, on_delete=models.CASCADE,related_name='reservas')
+    tickets_reservados = models.PositiveIntegerField()
+    estado = models.CharField(max_length=10, choices=STATUS_CHOICES, default='pendiente')
+
+    def __str__(self):
+        return f"{self.user.username}-{self.evento.titulo} ({self.estado})"
+
+
+
 
