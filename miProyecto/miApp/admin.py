@@ -18,14 +18,12 @@ class EventoAdmin(admin.ModelAdmin):
 @admin.register(Reservas)
 class ReservasAdmin(admin.ModelAdmin):
     list_display = ('user','evento','tickets_reservados','estado')
-    list_filter = ('estado')
-    search_fields = ('user__username','evento_titulo')
+    list_filter = ('estado',)
 
 @admin.register(Comentario)
 class ComentarioAdmin(admin.ModelAdmin):
     list_display = ('user', 'evento','creado_at')
-    list_filter = ('created_at')
-    search_fields = ('user__username','evento__titulo','texto')
+    search_fields = ('texto',)
 
 
 
