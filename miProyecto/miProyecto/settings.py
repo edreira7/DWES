@@ -9,10 +9,15 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
+from asyncore import dispatcher_with_send
+from distutils.command.sdist import sdist
+from os import supports_dir_fd
 from pathlib import Path
+from turtledemo.sorting_animate import disable_keys
+from urllib.response import addclosehook
 
 from django.conf.global_settings import AUTH_USER_MODEL
+from django.core.mail.message import sanitize_address
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -39,6 +44,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    #Oras apps
+    'rest_framework',
 
     #Mi nueva app
     'miApp',
@@ -127,3 +135,4 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'miApp.CustomUser'
+
